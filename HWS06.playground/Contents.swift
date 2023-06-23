@@ -22,5 +22,3 @@ struct Car{
 var chevy = Car(model: "Chevy", numberOfSeats: 5)
 chevy.changeGear(newGear: 1)
 print("New gear is set to \(chevy.currentGear)")
-
-
