@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var cpuSelection = Int.random(in: 0...2)
-    var cpuOptions = ["Rock", "Paper", "Scissors"]
+    var cpuOptions = ["🪨", "📃", "✂️"]
     var cpuPrompt = ["Win", "Loose"]
     @State var cpuPromptSelected = Int.random(in: 0...1)
     @State var score = 0
@@ -17,27 +17,34 @@ struct ContentView: View {
     @State var count = 0
     var body: some View {
         NavigationView{
-            VStack(spacing: 15){
-                Text("CPU selected \(cpuOptions[cpuSelection])")
-                Text("CPU wants you to \(cpuPrompt[cpuPromptSelected])")
-                HStack{
-                    ForEach (cpuOptions, id: \.self){option in
-                        Button{
-                            verify(option: option)
-                            select()
-                        }label: {
-                            Text(option)
-                        }.disabled(option.elementsEqual(cpuOptions[cpuSelection]))
+            ZStack{
+                LinearGradient(colors: [.red, .yellow], startPoint:.top, endPoint: .bottom).ignoresSafeArea()
+                VStack(spacing: 30){
+                    Text("CPU selected \(cpuOptions[cpuSelection])")
+                        .font(.title)
+                    Text("CPU wants you to \(cpuPrompt[cpuPromptSelected])")
+                        .font(.title)
+                    HStack(spacing: 45){
+                        ForEach (cpuOptions, id: \.self){option in
+                            Button{
+                                verify(option: option)
+                                select()
+                            }label: {
+                                Text(option)
+                                    .font(.largeTitle)
+                            }.disabled(option.elementsEqual(cpuOptions[cpuSelection]))
+                                .buttonStyle(.plain)
+                        }
                     }
+                    Text("Player 1 score = \(score)")
+                        .font(.title3)
+                }.alert("Finished!", isPresented: $showingAlert){
+                    Button("OK", action:restart)
+                }message:{
+                    Text("Your score is \(score)")
                 }
-                Text("Player 1 score = \(score)")
-            }.alert("Finished!", isPresented: $showingAlert){
-                Button("OK", action:restart)
-            }message:{
-                Text("Your score is \(score)")
+                .padding()
             }
-            .padding()
-            .navigationTitle("Rock Paper Scissors")
         }
     }
     func select(){
@@ -45,7 +52,7 @@ struct ContentView: View {
         cpuPromptSelected = Int.random(in: 0...1)
     }
     
-    func restart(){
+    func restart(){//
         score = 0
         count = 0
         select()
@@ -68,14 +75,14 @@ struct ContentView: View {
     }
     
     func winningMoveFor(option:String) -> String {
-        if(option == "Rock"){
-            return "Paper"
+        if(option == "🪨"){
+            return "📃"
         }
-        if(option == "Paper"){
-            return "Scissors"
+        if(option == "📃"){
+            return "✂️"
         }
-        if(option == "Scissors"){
-            return "Rock"
+        if(option == "✂️"){
+            return "🪨"
         }
         return ""
     }
