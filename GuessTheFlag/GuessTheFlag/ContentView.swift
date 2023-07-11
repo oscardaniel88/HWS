@@ -26,6 +26,9 @@ struct ContentView: View {
     @State private var scoreTitle = ""
     @State private var score = 0
     @State private var count = 0
+    @State private var animationAmount = [0.0, 0.0, 0.0]
+    @State private var opacityAmount = [1.0, 1.0, 1.0]
+    @State private var scaleAmount = [1.0, 1.0, 1.0]
     var body: some View {
         ZStack{
             RadialGradient(stops:[
@@ -49,6 +52,9 @@ struct ContentView: View {
                         }label: {
                             FlagImage(flagURI: countries[number])
                         }
+                        .rotation3DEffect(.degrees(animationAmount[number]), axis: (x:0, y:1, z:0))
+                        .opacity(opacityAmount[number])
+                        .scaleEffect(scaleAmount[number])
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -77,6 +83,17 @@ struct ContentView: View {
     
     func flagTapped(_ number: Int){
         count = count + 1
+        withAnimation{
+            animationAmount[number] += 360
+            for i in 0..<opacityAmount.count {
+                if i == number {
+                    scaleAmount[number] = 1.25
+                }else{
+                    opacityAmount[i] = 0.25
+                    scaleAmount[i] = 0.75
+                }
+            }
+        }
         if number == correctAnswer {
             scoreTitle = "Correct"
             score = score + 1
@@ -90,6 +107,10 @@ struct ContentView: View {
     func askQuestion(){
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        withAnimation {
+            opacityAmount = [1.0, 1.0, 1.0]
+            scaleAmount = [1.0, 1.0, 1.0]
+        }
         if(count == 8){
             showingFinalAlert = true
         }
