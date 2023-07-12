@@ -37,8 +37,11 @@ struct ContentView: View {
     @State private var questions = [Question]()
     @State private var answers = [Question]()
     @State private var alertTitle = ""
+    @State private var buttonText = ""
     @State private var showAlert = false
     @State private var score = 0
+    @State private var isCorrect = false
+    @State private var gameEnded = false
     
     var body: some View {
         VStack{
@@ -81,9 +84,15 @@ struct ContentView: View {
                         endGame()
                     }
                     .buttonStyle(.bordered)
-                }.alert(isPresented: $showAlert) { () -> Alert in
-                    Alert(title: Text("\(alertTitle)"), message: Text(" You score is: \(score)"), dismissButton: .default(Text("OK")){
-                        return
+                }.alert(isPresented: $showAlert) { //() -> Alert in
+                    Alert(title: Text("\(alertTitle)"), message: Text(" You score is: \(score)"), dismissButton: .default(Text(buttonText)){
+                        if(gameEnded){
+                            endGame()
+                        }else if(isCorrect){
+                            newQuestion()
+                        }else{
+                            return
+                        }
                     }
                 )}
             }
@@ -111,10 +120,19 @@ struct ContentView: View {
         if (answers[answer].answer == questions[currentQuestion].answer){
             score += 1
             alertTitle = "Correct!!!"
+            buttonText = "Next"
+            isCorrect = true
         }else{
-           alertTitle = "Wrong answer, try again"
+            alertTitle = "Wrong answer, try again"
+            buttonText = "Try again"
+            isCorrect = false
         }
         showAlert = true
+        gameEnded = currentQuestion + 1 == numberOfQuestions
+        if(gameEnded){
+            alertTitle = "Finished!!!"
+            buttonText = "Restart"
+        }
     }
     
     func createAnswers(){
@@ -125,16 +143,23 @@ struct ContentView: View {
         answers.append(questionsCopy[0])
         answers.append(questionsCopy[1])
         answers.append(questionsCopy[2])
+        answers.shuffle()
     }
     
     func newQuestion() {
         currentQuestion += 1
         answers = []
         createAnswers()
+        isCorrect = false
     }
     
     func endGame(){
         gameStarted = false
+        currentQuestion = 0
+        score = 0
+        answers = []
+        isCorrect = false
+        questions = []
     }
 }
 
