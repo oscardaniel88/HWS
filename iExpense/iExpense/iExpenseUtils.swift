@@ -30,20 +30,34 @@ struct ExpenseItem: Identifiable, Codable {
 }
 
 class Expenses: ObservableObject {
-    @Published var items = [ExpenseItem]() {
+    @Published var personalItems = [ExpenseItem]() {
         didSet {
-            if let encoded = try? JSONEncoder().encode(items) {
-                UserDefaults.standard.set(encoded, forKey:"Items")
+            if let encoded = try? JSONEncoder().encode(personalItems) {
+                UserDefaults.standard.set(encoded, forKey:"PersonalItems")
+            }
+        }
+    }
+    @Published var businessItems = [ExpenseItem]() {
+        didSet {
+            if let encoded = try? JSONEncoder().encode(businessItems) {
+                UserDefaults.standard.set(encoded, forKey:"BusinessItems")
             }
         }
     }
     init() {
-        if let savedItems = UserDefaults.standard.data(forKey: "Items") {
-            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
-                items = decodedItems
-                return
+        if let personalSavedItems = UserDefaults.standard.data(forKey: "PersonalItems") {
+            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: personalSavedItems){
+                personalItems = decodedItems
+            }else{
+                personalItems = []
             }
         }
-        items = []
+        if let businessSavedItems = UserDefaults.standard.data(forKey: "BusinessItems") {
+            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: businessSavedItems) {
+                businessItems = decodedItems
+            }else {
+                businessItems = []
+            }
+        }
     }
 }
