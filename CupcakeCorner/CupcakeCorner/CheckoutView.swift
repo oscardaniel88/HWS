@@ -11,6 +11,7 @@ struct CheckoutView: View {
     @ObservedObject var order: Order
     @State var confirmationMessage = ""
     @State var showingConfirmation = false
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         ScrollView {
             VStack {
@@ -23,7 +24,7 @@ struct CheckoutView: View {
                     ProgressView()
                 }
                 .frame(height: 233)
-                Text("Your total is \(order.cost, format: .currency(code: "USD"))")
+                Text("Your total is \(order.orderData.cost, format: .currency(code: "USD"))")
                 Button("Place order"){
                     Task {
                         await placeOrder()
@@ -35,7 +36,9 @@ struct CheckoutView: View {
         .navigationTitle("Check out")
         .navigationBarTitleDisplayMode(.inline)
         .alert("Thank you", isPresented: $showingConfirmation){
-            Button("OK") {}
+            Button("OK") {
+                dismiss()
+            }
         }message: {
             Text(confirmationMessage)
         }
@@ -53,7 +56,7 @@ struct CheckoutView: View {
         do {
             let (data, _) = try await URLSession.shared.upload(for: request, from:encoded)
             let decoded = try JSONDecoder().decode(Order.self, from: data)
-            confirmationMessage = "Your order for \(decoded.quantity)x \(Order.types[order.type].lowercased()) cupcakes is on the way!"
+            confirmationMessage = "Your order for \(decoded.orderData.quantity)x \(OrderData.types[order.orderData.type].lowercased()) cupcakes is on the way!"
             showingConfirmation = true
         } catch {
             confirmationMessage = "Something went wrong, try again!"
