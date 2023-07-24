@@ -73,4 +73,8 @@ class Order: ObservableObject, Codable {
         orderData = try container.decode(OrderData.self, forKey: .orderData)
     }
     init () {}
+    
+    func resetOrder() {
+        orderData = OrderData()
+    }
 }

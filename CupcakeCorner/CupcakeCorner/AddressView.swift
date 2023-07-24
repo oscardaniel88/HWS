@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddressView: View {
     @ObservedObject var order: Order
-    @Environment(\.dismiss) var dismiss
+    @Binding var selection: String?
     var body: some View {
         Form{
             Section{
@@ -20,10 +20,10 @@ struct AddressView: View {
             }
             Section {
                 NavigationLink {
-                    CheckoutView(order: order)
+                    CheckoutView(order: order, selection: $selection)
                 }label: {
                     Text("Checkout")
-                }
+                }.isDetailLink(false)
             }
             .disabled(order.orderData.address.hasValidAddress == false)
         }
@@ -33,7 +33,8 @@ struct AddressView: View {
 }
 
 struct AddressView_Previews: PreviewProvider {
+    @State static var selection: String?
     static var previews: some View {
-        AddressView(order: Order())
+        AddressView(order: Order(), selection: $selection)
     }
 }

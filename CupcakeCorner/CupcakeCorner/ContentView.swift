@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var order = Order()
+    @State private var selection: String? = nil
     var body: some View {
         NavigationView {
             Form {
@@ -18,7 +19,6 @@ struct ContentView: View {
                             Text(OrderData.types[$0])
                         }
                     }
-                    
                     Stepper("Number of cakes: \(order.orderData.quantity)", value: $order.orderData.quantity, in: 3...20)
                 }
                 Section {
@@ -30,11 +30,11 @@ struct ContentView: View {
                     }
                 }
                 Section {
-                    NavigationLink {
-                        AddressView(order: order)
+                    NavigationLink(tag: "Address", selection: $selection) {
+                        AddressView(order: order, selection: $selection)
                     }label: {
                         Text("Delivery details")
-                    }
+                    }.isDetailLink(false)
                 }
             }
             .navigationTitle("Cupcake Corner")

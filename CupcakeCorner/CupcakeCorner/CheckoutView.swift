@@ -12,6 +12,7 @@ struct CheckoutView: View {
     @State var confirmationMessage = ""
     @State var showingConfirmation = false
     @Environment(\.dismiss) var dismiss
+    @Binding var selection: String?
     var body: some View {
         ScrollView {
             VStack {
@@ -36,12 +37,23 @@ struct CheckoutView: View {
         .navigationTitle("Check out")
         .navigationBarTitleDisplayMode(.inline)
         .alert("Thank you", isPresented: $showingConfirmation){
-            Button("OK") {
-                dismiss()
+            HStack{
+                Button("OK") {
+                    dismiss()
+                }
+                Button("New Order") {
+                    navigateToRoot()
+                }
             }
+            
         }message: {
             Text(confirmationMessage)
         }
+    }
+    
+    func navigateToRoot() {
+        order.resetOrder()
+        selection = nil
     }
     
     func placeOrder () async {
@@ -67,7 +79,8 @@ struct CheckoutView: View {
 }
 
 struct CheckoutView_Previews: PreviewProvider {
+    @State static var selection: String?
     static var previews: some View {
-        CheckoutView(order: Order())
+        CheckoutView(order: Order(), selection: $selection)
     }
 }
