@@ -34,6 +34,10 @@ struct DetailView: View {
                 .font(.title)
                 .foregroundColor(.secondary)
             
+            Text("Date added: \(formatDate())")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+            
             Text(book.review ?? "No review")
                 .padding()
             
@@ -55,6 +59,17 @@ struct DetailView: View {
                 Label("Delete this book", systemImage: "trash")
             }
         }
+    }
+    
+    func formatDate() -> String {
+        if(book.date != nil){
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+            return dateFormatter.string(from:book.date!)
+        }else{
+            return "NA"
+        }
+        
     }
     
     func deleteBook() {

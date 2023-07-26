@@ -12,10 +12,10 @@ struct AddBookView: View {
     @Environment(\.dismiss) var dismiss
     @State private var title = ""
     @State private var author = ""
-    @State private var genre = "Fantasy"
+    @State private var genre = "Select genre"
     @State private var review = ""
     @State private var rating  = 3
-    let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
+    let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller", "Select genre"]
     var body: some View {
         NavigationView {
             Form {
@@ -44,14 +44,20 @@ struct AddBookView: View {
                         newBook.genre = genre
                         newBook.review = review
                         newBook.rating = Int16(rating)
-                        
+                        newBook.date = Date.now
                         try? moc.save()
                         dismiss()
-                    }
+                    }.disabled(saveDisabled())
                 }
             }
             .navigationTitle("Add Book")
         }
+    }
+    func saveDisabled() -> Bool {
+        return
+            title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+            author.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+            genre.elementsEqual("Select genre")
     }
 }
 
