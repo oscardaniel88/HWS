@@ -8,11 +8,59 @@
 import CoreData
 import SwiftUI
 
+enum predicateOperator: CustomStringConvertible {
+    case beginsWith
+    case contains
+    
+    var description: String {
+        switch self {
+            case .contains:  return "CONTAINS"
+            case .beginsWith: return "BEGINSWITH"
+        }
+    }
+    
+}
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var countries: FetchedResults<Country>
+    @FetchRequest(sortDescriptors: []) var singers: FetchedResults<Singer>
+    @State private var predicate: NSPredicate? = NSPredicate(format: "%K \(predicateOperator.beginsWith.description) %@", "firstName", "A")
+    private var sortDescriptors: [SortDescriptor<Singer>] = [
+        SortDescriptor(\.firstName, order: .reverse),
+        SortDescriptor(\.lastName)
+    ]
     var body: some View {
         VStack {
+            FilteredList(predicate: predicate, sortDescriptors: sortDescriptors){(singer: Singer) in
+                Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
+            }
+                
+                Button("Add Singer") {
+                    let singer1 = Singer(context: moc)
+                    singer1.firstName = "Adele"
+                    singer1.lastName = "Atkins"
+                    
+                    let singer2 = Singer(context: moc)
+                    singer2.firstName = "Taylor"
+                    singer2.lastName = "Swift"
+                
+                    let singer3 = Singer(context: moc)
+                    singer3.firstName = "Ed"
+                    singer3.lastName = "Sheeran"
+                    
+                    try? moc.save()
+                }
+                
+                Button("Show beginning with A"){
+                    predicate = NSPredicate(format: "%K \(predicateOperator.beginsWith.description) %@", "firstName", "A")
+                }
+                Button("Show contains Swift"){
+                    predicate = NSPredicate(format: "%K \(predicateOperator.contains.description) %@", "firstName", "Taylor")
+                }
+                Button("Show All"){
+                    predicate = nil
+                }
+                /*
             List {
                 ForEach(countries, id:\.self) {
                     country in
@@ -75,6 +123,7 @@ struct ContentView: View {
                 
                 try? moc.save()
             }
+             */
             
         }
         .padding()
