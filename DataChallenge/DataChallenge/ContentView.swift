@@ -8,57 +8,81 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var cachedUsers: FetchedResults<CachedUser>
     @State private var users = [User]()
     var body: some View {
-        List(users) { user in
-            HStack{
-                LazyVStack(alignment: .leading) {
-                    Text(user.name)
-                        .font(.headline)
-                        .foregroundColor(user.isActive ? Color.green : Color.red)
-                    Text(user.email)
-                        .font(.subheadline)
-                        .foregroundColor(user.isActive ? Color.green : Color.red)
+        NavigationView {
+            List(cachedUsers) { user in
+                NavigationLink {
+                    DetailView(user: user)
+                }label: {
+                    HStack{
+                        VStack(alignment: .leading) {
+                            Text(user.wrappedName)
+                                .font(.headline)
+                                .foregroundColor(user.isActive ? Color.green : Color.red)
+                            Text(user.wrappedEmail)
+                                .font(.subheadline)
+                                .foregroundColor(user.isActive ? Color.green : Color.red)
+                        }
+                        HStack{
+                            Text("\(user.friendsArray.count)")
+                            Image(systemName: "person.fill")
+                        }
+                    }
                 }
-                HStack{
-                    Text("\(user.friends.count)")
-                    Image(systemName: "person.fill")
+            }
+            .task{
+                if cachedUsers.isEmpty {
+                    if let retrievedUsers = await getUsers() {
+                        users = retrievedUsers
+                    }
                     
+                    await MainActor.run {
+                        for user in users {
+                            let newUser = CachedUser(context: moc)
+                            newUser.name = user.name
+                            newUser.id = user.id
+                            newUser.isActive = user.isActive
+                            newUser.age = Int16(user.age)
+                            newUser.about = user.about
+                            newUser.email = user.email
+                            newUser.address = user.address
+                            newUser.company = user.company
+                            newUser.formattedDate = user.formattedDate
+                            
+                            for friend in user.friends {
+                                let newFriend = CachedFriend(context: moc)
+                                newFriend.id = friend.id
+                                newFriend.name = friend.name
+                                newFriend.user = newUser
+                            }
+                            try? moc.save()
+                        }
+                    }
                 }
                 
             }
-            
-        }
-        .task{
-            await loadData()
+            .navigationTitle("FriendFace")
         }
     }
     
-    func loadData() async {
-        if(users.isEmpty) {
-            print("fetching data")
-            guard let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json")
-            else {
-                print("Invalid url")
-                return
-            }
-            let request = URLRequest(url: url)
-            URLSession.shared.dataTask(with: request) {data, response, error in
-                guard let userData = data else {
-                    print("No data in response \(error?.localizedDescription ?? "Unknown error")")
-                    return
-                }
-                let userDecoder = JSONDecoder()
-                userDecoder.dateDecodingStrategy = .iso8601
-                do {
-                    users = try userDecoder.decode([User].self, from: userData)
-                    return
-                } catch {
-                    print("Decoding failed: \(error)")
-                }
-                print("Fetched failed: \(error?.localizedDescription ?? "Unknown error")")
-            }.resume()
+    func getUsers() async -> [User]? {
+        let url =  URL(string: "https://www.hackingwithswift.com/samples/friendface.json")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        do {
+            let(data, _) = try await URLSession.shared.data(for: request)
+            let decodedData = try decoder.decode([User].self, from:data)
+            return decodedData
+        } catch {
+            print(error)
         }
+        return nil
     }
 }
 
