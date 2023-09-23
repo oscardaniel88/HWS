@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F19E5D72ABF87C400CE0CF0 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F19E5D62ABF87C400CE0CF0 /* ContentView-ViewModel.swift */; };
+		7F19E5D92ABF8C3700CE0CF0 /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F19E5D82ABF8C3700CE0CF0 /* FileManager-DocumentsDirectory.swift */; };
 		7F7F0C472AB953F100FA4D44 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F0C462AB953F100FA4D44 /* Location.swift */; };
 		7F7F0C492AB95A0900FA4D44 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F0C482AB95A0900FA4D44 /* EditView.swift */; };
 		7F8D7C802AB2B17000519277 /* BucketlistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8D7C7F2AB2B17000519277 /* BucketlistApp.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F19E5D62ABF87C400CE0CF0 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
+		7F19E5D82ABF8C3700CE0CF0 /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
 		7F640C8A2AB558E6004DD1E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7F7F0C462AB953F100FA4D44 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		7F7F0C482AB95A0900FA4D44 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
@@ -61,7 +65,9 @@
 				7F640C8A2AB558E6004DD1E3 /* Info.plist */,
 				7F8D7C7F2AB2B17000519277 /* BucketlistApp.swift */,
 				7F8D7C812AB2B17000519277 /* ContentView.swift */,
+				7F19E5D82ABF8C3700CE0CF0 /* FileManager-DocumentsDirectory.swift */,
 				7F7F0C482AB95A0900FA4D44 /* EditView.swift */,
+				7F19E5D62ABF87C400CE0CF0 /* ContentView-ViewModel.swift */,
 				7FAA9DD42ABBED94009AEE4E /* Result.swift */,
 				7F7F0C462AB953F100FA4D44 /* Location.swift */,
 				7F8D7C832AB2B17200519277 /* Assets.xcassets */,
@@ -149,6 +155,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F8D7C822AB2B17000519277 /* ContentView.swift in Sources */,
+				7F19E5D92ABF8C3700CE0CF0 /* FileManager-DocumentsDirectory.swift in Sources */,
+				7F19E5D72ABF87C400CE0CF0 /* ContentView-ViewModel.swift in Sources */,
 				7FAA9DD52ABBED94009AEE4E /* Result.swift in Sources */,
 				7F7F0C472AB953F100FA4D44 /* Location.swift in Sources */,
 				7F7F0C492AB95A0900FA4D44 /* EditView.swift in Sources */,
