@@ -45,16 +45,20 @@ struct ContentView: View {
                         Spacer()
                         Button{
                             viewModel.addLocation()
-                            viewModel.save()
                         }label: {
                             Image(systemName: "plus")
+                                .padding()
+                                .background(.black.opacity(0.75))
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .clipShape(Circle())
+                                .padding(.trailing)
                         }
-                        .padding()
-                        .background(.black.opacity(0.75))
-                        .foregroundColor(.white)
-                        .font(.title)
-                        .clipShape(Circle())
-                        .padding(.trailing)
+                    }
+                }
+                .sheet(item: $viewModel.selectedPlace) { place in
+                    EditView(location: place) {
+                        viewModel.update(location: $0)
                     }
                 }
             } else {
@@ -65,15 +69,11 @@ struct ContentView: View {
                 .background(.blue)
                 .foregroundColor(.white)
                 .clipShape(Capsule())
+                .alert(isPresented: $viewModel.showingError) {
+                    Alert(title: Text(viewModel.errorTitle), message: Text(viewModel.errorMessage), dismissButton: .default(Text("OK")))
+                }
             }
         }
-        .sheet(item: $viewModel.selectedPlace) { place in
-            EditView(location: place) {
-                viewModel.update(location: $0)
-                viewModel.save()
-            }
-        }
-       
     }
     
     func getDocumentsDirectory() -> URL {

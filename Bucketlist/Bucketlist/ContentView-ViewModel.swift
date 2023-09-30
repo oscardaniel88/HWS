@@ -15,6 +15,9 @@ extension ContentView{
         @Published private(set) var locations: [Location]
         @Published var selectedPlace: Location?
         @Published var isUnlocked = false
+        @Published var showingError = false
+        @Published var errorTitle = ""
+        @Published var errorMessage = ""
         
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
         
@@ -30,6 +33,7 @@ extension ContentView{
         func addLocation(){
             let newLocation = Location(id:UUID(), name: "New Location", description: "", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude)
             locations.append(newLocation)
+            save()
         }
         
         func update(location: Location) {
@@ -37,6 +41,7 @@ extension ContentView{
             
             if let index = locations.firstIndex(of: selectedPlace){
                 locations[index] = location
+                save()
             }
         }
         
@@ -63,11 +68,15 @@ extension ContentView{
                                 self.isUnlocked = true
                         }
                     }else {
-                        // there was a problem
+                        self.showingError = true
+                        self.errorTitle = "There was a problem"
+                        self.errorMessage = "\(authenticationError?.localizedDescription ?? "Try again")"
                     }
                 }
             }else {
-                // no biometrics
+                self.showingError = true
+                self.errorTitle = "There was a problem"
+                self.errorMessage = "Face ID not supported"
             }
         }
     }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7F19E5D72ABF87C400CE0CF0 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F19E5D62ABF87C400CE0CF0 /* ContentView-ViewModel.swift */; };
 		7F19E5D92ABF8C3700CE0CF0 /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F19E5D82ABF8C3700CE0CF0 /* FileManager-DocumentsDirectory.swift */; };
+		7F36D8532AC8AB0E003B6564 /* EditView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F36D8522AC8AB0E003B6564 /* EditView-ViewModel.swift */; };
 		7F7F0C472AB953F100FA4D44 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F0C462AB953F100FA4D44 /* Location.swift */; };
 		7F7F0C492AB95A0900FA4D44 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7F0C482AB95A0900FA4D44 /* EditView.swift */; };
 		7F8D7C802AB2B17000519277 /* BucketlistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8D7C7F2AB2B17000519277 /* BucketlistApp.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		7F19E5D62ABF87C400CE0CF0 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 		7F19E5D82ABF8C3700CE0CF0 /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
+		7F36D8522AC8AB0E003B6564 /* EditView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView-ViewModel.swift"; sourceTree = "<group>"; };
 		7F640C8A2AB558E6004DD1E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7F7F0C462AB953F100FA4D44 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		7F7F0C482AB95A0900FA4D44 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				7F8D7C812AB2B17000519277 /* ContentView.swift */,
 				7F19E5D82ABF8C3700CE0CF0 /* FileManager-DocumentsDirectory.swift */,
 				7F7F0C482AB95A0900FA4D44 /* EditView.swift */,
+				7F36D8522AC8AB0E003B6564 /* EditView-ViewModel.swift */,
 				7F19E5D62ABF87C400CE0CF0 /* ContentView-ViewModel.swift */,
 				7FAA9DD42ABBED94009AEE4E /* Result.swift */,
 				7F7F0C462AB953F100FA4D44 /* Location.swift */,
@@ -159,6 +162,7 @@
 				7F19E5D72ABF87C400CE0CF0 /* ContentView-ViewModel.swift in Sources */,
 				7FAA9DD52ABBED94009AEE4E /* Result.swift in Sources */,
 				7F7F0C472AB953F100FA4D44 /* Location.swift in Sources */,
+				7F36D8532AC8AB0E003B6564 /* EditView-ViewModel.swift in Sources */,
 				7F7F0C492AB95A0900FA4D44 /* EditView.swift in Sources */,
 				7F8D7C802AB2B17000519277 /* BucketlistApp.swift in Sources */,
 			);

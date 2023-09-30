@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "CE81EDC4-27F1-4220-95C2-419206FEA224"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6074D588-36E7-493E-8583-3E581C128CB9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bucketlist/ContentView-ViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "update(location:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6074D588-36E7-493E-8583-3E581C128CB9 - 6f4f8fe0f94d1edc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bucketlist.ContentView.ViewModel.update(location: Bucketlist.Location) -&gt; ()"
+                  moduleName = "Bucketlist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielcamarena/Github/HWS/Bucketlist/Bucketlist/ContentView-ViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  uuid = "6074D588-36E7-493E-8583-3E581C128CB9 - 6f4f8fe0f94d1edc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bucketlist.ContentView.ViewModel.update(location: Bucketlist.Location) -&gt; ()"
+                  moduleName = "Bucketlist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielcamarena/Github/HWS/Bucketlist/Bucketlist/ContentView-ViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "380">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "43510B2D-A4C1-4E7D-BCE0-DF440146A913"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bucketlist/ContentView-ViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "update(location:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "43510B2D-A4C1-4E7D-BCE0-DF440146A913 - 6f4f8fe0f94d1edc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bucketlist.ContentView.ViewModel.update(location: Bucketlist.Location) -&gt; ()"
+                  moduleName = "Bucketlist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielcamarena/Github/HWS/Bucketlist/Bucketlist/ContentView-ViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  uuid = "43510B2D-A4C1-4E7D-BCE0-DF440146A913 - 6f4f8fe0f94d1edc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bucketlist.ContentView.ViewModel.update(location: Bucketlist.Location) -&gt; ()"
+                  moduleName = "Bucketlist"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielcamarena/Github/HWS/Bucketlist/Bucketlist/ContentView-ViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "380">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AEA01BA9-00F2-4A76-9894-687A6B878A92"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bucketlist/ContentView-ViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "save()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
