@@ -64,8 +64,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
             endingLineNumber = "56"
-            landmarkName = "CheckoutView"
-            landmarkType = "14">
+            landmarkName = "navigateToRoot()"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "69F57CD7-2286-4416-8C12-07507ACC27B2 - d9722bb711db7a6e"
