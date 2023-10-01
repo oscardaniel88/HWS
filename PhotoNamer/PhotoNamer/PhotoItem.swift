@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct PhotoItem: Equatable, Identifiable, Codable {
+struct PhotoItem: Equatable, Identifiable, Codable, Comparable {
     enum CodingKeys: String, CodingKey {
         case id, image, name
     }
@@ -18,6 +18,10 @@ struct PhotoItem: Equatable, Identifiable, Codable {
     
     static func ==(lhs: PhotoItem, rhs: PhotoItem) -> Bool {
         lhs.id == rhs.id
+    }
+    
+    static func < (lhs: PhotoItem, rhs: PhotoItem) -> Bool {
+        lhs.name < rhs.name
     }
     
     init(from decoder: Decoder) throws {
