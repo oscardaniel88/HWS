@@ -27,7 +27,7 @@ struct ContentView: View {
                                 .font(.headline)
                         }
                     }
-                }
+                }.onDelete(perform:viewModel.deleteImage)
             }
             .onAppear(perform: locationFetcher.start)
             .sheet(isPresented: $viewModel.showImagePicker){

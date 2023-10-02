@@ -31,6 +31,18 @@ extension ContentView {
             save()
         }
         
+        func deleteImage(at offsets: IndexSet) {
+            Task {
+                @MainActor in
+                    let sortedItems = photoItems.sorted()
+                    let itemsToDelete = offsets.map { sortedItems[$0] }
+                    guard let itemToDelete = itemsToDelete.first else { return }
+                    guard let deleteIndex = photoItems.firstIndex(of: itemToDelete) else { return }
+                    photoItems.remove(at: deleteIndex)
+                    save()
+            }
+        }
+        
         func save() {
             do {
                 let data = try JSONEncoder().encode(photoItems)
