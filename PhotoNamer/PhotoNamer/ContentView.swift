@@ -14,13 +14,17 @@ struct ContentView: View {
             List {
                 ForEach(viewModel.photoItems.sorted()){
                     item in
-                    HStack{
-                        Image(uiImage:item.uiImage)
-                            .resizable()
-                            .frame(width: 50.0, height: 50.0)
-                        Spacer()
-                        Text(item.name)
-                            .font(.headline)
+                    NavigationLink {
+                        PhotoItemDetailView(photoItem: item)
+                    } label: {
+                        HStack{
+                            Image(uiImage:item.uiImage)
+                                .resizable()
+                                .frame(width: 50.0, height: 50.0)
+                                .padding(.trailing)
+                            Text(item.name)
+                                .font(.headline)
+                        }
                     }
                 }
             }
