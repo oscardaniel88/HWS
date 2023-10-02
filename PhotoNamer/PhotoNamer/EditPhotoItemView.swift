@@ -26,8 +26,7 @@ struct EditPhotoItemView: View {
             .navigationBarTitle("Edit Item", displayMode: .inline)
             .navigationBarItems(trailing: Button("Save"){
                 dismiss()
-                guard let newPhotoItem = viewModel.save() else { return }
-                onSave(newPhotoItem)
+                onSave(viewModel.updatePhotoItem())
             })
             
         }

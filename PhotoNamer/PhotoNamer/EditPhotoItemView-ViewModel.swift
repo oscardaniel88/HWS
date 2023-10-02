@@ -23,9 +23,8 @@ extension EditPhotoItemView {
             self.uiImage = uiImage
         }
         
-        func save() -> PhotoItem? {
-            guard let imageToSave = uiImage else { return nil }
-            return PhotoItem(id: UUID(), uiImage: imageToSave, name: photoName)
+        func updatePhotoItem() -> PhotoItem {
+            return PhotoItem(id: UUID(), uiImage: uiImage ?? UIImage(), name: photoName)
         }
     }
 }
