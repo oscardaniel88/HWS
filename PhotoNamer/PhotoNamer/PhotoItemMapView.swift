@@ -27,6 +27,9 @@ struct PhotoItemMapView: View {
                             }
                         
                         Text(photoItem.name)
+                            .foregroundColor(.black)
+                            .font(.body)
+                            .fontWeight(.bold)
                             .fixedSize()
                     }
                 }
