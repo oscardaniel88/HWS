@@ -7,14 +7,21 @@
 
 import Foundation
 import SwiftUI
+import MapKit
 
 struct PhotoItem: Equatable, Identifiable, Codable, Comparable {
     enum CodingKeys: String, CodingKey {
-        case id, image, name
+        case id, image, name, latitude, longitude
     }
     var id: UUID
     var uiImage: UIImage
     var name: String
+    var latitude: Double
+    var longitude: Double
+    
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
     
     static func ==(lhs: PhotoItem, rhs: PhotoItem) -> Bool {
         lhs.id == rhs.id
@@ -31,12 +38,16 @@ struct PhotoItem: Equatable, Identifiable, Codable, Comparable {
         let uiImage = UIImage(data: imageData)
         self.uiImage = uiImage!
         self.name = try container.decode(String.self, forKey: .name)
+        self.latitude = try container.decode(Double.self, forKey: .latitude)
+        self.longitude = try container.decode(Double.self, forKey: .longitude)
     }
     
-    init(id: UUID, uiImage: UIImage, name: String){
+    init(id: UUID, uiImage: UIImage, name: String, latitude: Double, longitude: Double){
         self.id = id
         self.uiImage = uiImage
         self.name = name
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     func encode(to encoder: Encoder) throws {
@@ -45,6 +56,8 @@ struct PhotoItem: Equatable, Identifiable, Codable, Comparable {
         let imageData = uiImage.jpegData(compressionQuality: 0.8)
         try container.encode(imageData, forKey: .image)
         try container.encode(name, forKey: .name)
+        try container.encode(latitude, forKey: .latitude)
+        try container.encode(longitude, forKey: .longitude)
     }
     
 }

@@ -27,19 +27,20 @@ struct EditPhotoItemView: View {
             .navigationBarItems(trailing: Button("Save"){
                 dismiss()
                 onSave(viewModel.updatePhotoItem())
-            })
-            
+            }
+                .disabled(viewModel.photoName.isEmpty)
+            )
         }
     }
     
-    init(uiImage: UIImage?, onSave: @escaping(PhotoItem) -> Void){
+    init(uiImage: UIImage?, locationFetcher: LocationFetcher, onSave: @escaping(PhotoItem) -> Void){
         self.onSave = onSave
-        _viewModel = StateObject(wrappedValue: ViewModel(uiImage: uiImage))
+        _viewModel = StateObject(wrappedValue: ViewModel(uiImage: uiImage, locationFetcher: locationFetcher))
     }
 }
 
 struct EditPhotoItemView_Previews: PreviewProvider {
     static var previews: some View {
-        EditPhotoItemView(uiImage: nil){ photoItem in }
+        EditPhotoItemView(uiImage: nil, locationFetcher: LocationFetcher()){ photoItem in }
     }
 }

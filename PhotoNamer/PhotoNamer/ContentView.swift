@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel = ViewModel()
+    let locationFetcher = LocationFetcher()
     var body: some View {
         NavigationView {
             List {
                 ForEach(viewModel.photoItems.sorted()){
                     item in
                     NavigationLink {
-                        PhotoItemDetailView(photoItem: item)
+                        PhotoItemMapView(photoItem: item)
                     } label: {
                         HStack{
                             Image(uiImage:item.uiImage)
@@ -28,11 +29,12 @@ struct ContentView: View {
                     }
                 }
             }
+            .onAppear(perform: locationFetcher.start)
             .sheet(isPresented: $viewModel.showImagePicker){
                 ImagePicker(image: $viewModel.uiImage, didSelectImage: $viewModel.didSelectImage)
             }
             .sheet(isPresented: $viewModel.didSelectImage){
-                EditPhotoItemView(uiImage: viewModel.uiImage){
+                EditPhotoItemView(uiImage: viewModel.uiImage, locationFetcher: locationFetcher){
                     viewModel.addImage(photoItem: $0)
                 }
             }

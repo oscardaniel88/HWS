@@ -18,6 +18,9 @@
 		7F4C36E82ACA234C00227418 /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C36E72ACA234C00227418 /* FileManager-DocumentsDirectory.swift */; };
 		7F4C36EA2ACA4B1E00227418 /* PhotoItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C36E92ACA4B1E00227418 /* PhotoItemDetailView.swift */; };
 		7F4C36EC2ACA4EE900227418 /* EditPhotoItemView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C36EB2ACA4EE900227418 /* EditPhotoItemView-ViewModel.swift */; };
+		7F4C36EE2ACA5C7400227418 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C36ED2ACA5C7400227418 /* LocationFetcher.swift */; };
+		7F4C36F02ACA689000227418 /* PhotoItemMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C36EF2ACA689000227418 /* PhotoItemMapView.swift */; };
+		7F4C36F22ACA6CC000227418 /* PhotoItemMapView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C36F12ACA6CBF00227418 /* PhotoItemMapView-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 		7F4C36E72ACA234C00227418 /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
 		7F4C36E92ACA4B1E00227418 /* PhotoItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemDetailView.swift; sourceTree = "<group>"; };
 		7F4C36EB2ACA4EE900227418 /* EditPhotoItemView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditPhotoItemView-ViewModel.swift"; sourceTree = "<group>"; };
+		7F4C36ED2ACA5C7400227418 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
+		7F4C36EF2ACA689000227418 /* PhotoItemMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemMapView.swift; sourceTree = "<group>"; };
+		7F4C36F12ACA6CBF00227418 /* PhotoItemMapView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoItemMapView-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +73,10 @@
 			children = (
 				7F1841192AC8F5CA0046F338 /* PhotoNamerApp.swift */,
 				7F18411B2AC8F5CA0046F338 /* ContentView.swift */,
+				7F4C36EF2ACA689000227418 /* PhotoItemMapView.swift */,
+				7F4C36F12ACA6CBF00227418 /* PhotoItemMapView-ViewModel.swift */,
 				7F447BD92AC94135008A67B6 /* PhotoItem.swift */,
+				7F4C36ED2ACA5C7400227418 /* LocationFetcher.swift */,
 				7F4C36E92ACA4B1E00227418 /* PhotoItemDetailView.swift */,
 				7F447BDB2AC942E5008A67B6 /* ContentView-ViewModel.swift */,
 				7F4C36E72ACA234C00227418 /* FileManager-DocumentsDirectory.swift */,
@@ -160,10 +169,13 @@
 			files = (
 				7F447BDA2AC94135008A67B6 /* PhotoItem.swift in Sources */,
 				7F1841282AC8F9680046F338 /* ImagePicker.swift in Sources */,
+				7F4C36EE2ACA5C7400227418 /* LocationFetcher.swift in Sources */,
 				7F447BDC2AC942E5008A67B6 /* ContentView-ViewModel.swift in Sources */,
 				7F4C36EA2ACA4B1E00227418 /* PhotoItemDetailView.swift in Sources */,
 				7F18411C2AC8F5CA0046F338 /* ContentView.swift in Sources */,
 				7F447BDE2AC946FA008A67B6 /* EditPhotoItemView.swift in Sources */,
+				7F4C36F02ACA689000227418 /* PhotoItemMapView.swift in Sources */,
+				7F4C36F22ACA6CC000227418 /* PhotoItemMapView-ViewModel.swift in Sources */,
 				7F4C36E82ACA234C00227418 /* FileManager-DocumentsDirectory.swift in Sources */,
 				7F4C36EC2ACA4EE900227418 /* EditPhotoItemView-ViewModel.swift in Sources */,
 				7F18411A2AC8F5CA0046F338 /* PhotoNamerApp.swift in Sources */,
@@ -297,6 +309,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PhotoNamer/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to location";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "\"We need o access your photos\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -326,6 +339,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"PhotoNamer/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to location";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "\"We need o access your photos\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
