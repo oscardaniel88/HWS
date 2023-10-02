@@ -9,22 +9,16 @@ import SwiftUI
 
 struct EditPhotoItemView: View {
     @Environment(\.dismiss) var dismiss
-    @State private var photoName = ""
-    private var uiImage: UIImage?
-    
     var onSave: (PhotoItem) -> Void
-    var image: Image? {
-        guard let uiImage = uiImage else { return nil }
-        return Image(uiImage: uiImage)
-    }
+    @StateObject var viewModel: ViewModel
     var body: some View {
         NavigationView {
             Form{
                 Section {
-                    TextField("Type a name", text: $photoName)
+                    TextField("Type a name", text: $viewModel.photoName)
                 }
                 Section{
-                    image?
+                    viewModel.image?
                     .resizable()
                     .scaledToFit()
                 }
@@ -32,22 +26,21 @@ struct EditPhotoItemView: View {
             .navigationBarTitle("Edit Item", displayMode: .inline)
             .navigationBarItems(trailing: Button("Save"){
                 dismiss()
-                guard let imageToSave = uiImage else { return }
-                let newPhotoItem = PhotoItem(id: UUID(), uiImage: imageToSave, name: photoName)
+                guard let newPhotoItem = viewModel.save() else { return }
                 onSave(newPhotoItem)
             })
             
         }
     }
     
-    init(image: UIImage?, onSave: @escaping(PhotoItem) -> Void){
-        self.uiImage = image
+    init(uiImage: UIImage?, onSave: @escaping(PhotoItem) -> Void){
         self.onSave = onSave
+        _viewModel = StateObject(wrappedValue: ViewModel(uiImage: uiImage))
     }
 }
 
 struct EditPhotoItemView_Previews: PreviewProvider {
     static var previews: some View {
-        EditPhotoItemView(image: nil){ photoItem in }
+        EditPhotoItemView(uiImage: nil){ photoItem in }
     }
 }

@@ -17,6 +17,7 @@
 		7F447BDE2AC946FA008A67B6 /* EditPhotoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F447BDD2AC946FA008A67B6 /* EditPhotoItemView.swift */; };
 		7F4C36E82ACA234C00227418 /* FileManager-DocumentsDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C36E72ACA234C00227418 /* FileManager-DocumentsDirectory.swift */; };
 		7F4C36EA2ACA4B1E00227418 /* PhotoItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C36E92ACA4B1E00227418 /* PhotoItemDetailView.swift */; };
+		7F4C36EC2ACA4EE900227418 /* EditPhotoItemView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C36EB2ACA4EE900227418 /* EditPhotoItemView-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		7F447BDD2AC946FA008A67B6 /* EditPhotoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhotoItemView.swift; sourceTree = "<group>"; };
 		7F4C36E72ACA234C00227418 /* FileManager-DocumentsDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager-DocumentsDirectory.swift"; sourceTree = "<group>"; };
 		7F4C36E92ACA4B1E00227418 /* PhotoItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemDetailView.swift; sourceTree = "<group>"; };
+		7F4C36EB2ACA4EE900227418 /* EditPhotoItemView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditPhotoItemView-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				7F447BDB2AC942E5008A67B6 /* ContentView-ViewModel.swift */,
 				7F4C36E72ACA234C00227418 /* FileManager-DocumentsDirectory.swift */,
 				7F447BDD2AC946FA008A67B6 /* EditPhotoItemView.swift */,
+				7F4C36EB2ACA4EE900227418 /* EditPhotoItemView-ViewModel.swift */,
 				7F1841272AC8F9680046F338 /* ImagePicker.swift */,
 				7F18411D2AC8F5CC0046F338 /* Assets.xcassets */,
 				7F18411F2AC8F5CC0046F338 /* Preview Content */,
@@ -162,6 +165,7 @@
 				7F18411C2AC8F5CA0046F338 /* ContentView.swift in Sources */,
 				7F447BDE2AC946FA008A67B6 /* EditPhotoItemView.swift in Sources */,
 				7F4C36E82ACA234C00227418 /* FileManager-DocumentsDirectory.swift in Sources */,
+				7F4C36EC2ACA4EE900227418 /* EditPhotoItemView-ViewModel.swift in Sources */,
 				7F18411A2AC8F5CA0046F338 /* PhotoNamerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

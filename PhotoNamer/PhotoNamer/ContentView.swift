@@ -32,7 +32,7 @@ struct ContentView: View {
                 ImagePicker(image: $viewModel.uiImage, didSelectImage: $viewModel.didSelectImage)
             }
             .sheet(isPresented: $viewModel.didSelectImage){
-                EditPhotoItemView(image: viewModel.uiImage){
+                EditPhotoItemView(uiImage: viewModel.uiImage){
                     viewModel.addImage(photoItem: $0)
                 }
             }
