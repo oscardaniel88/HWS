@@ -38,7 +38,6 @@ struct ContentView: View {
                     viewModel.addImage(photoItem: $0)
                 }
             }
-            .padding()
             .navigationBarTitle("Photo Namer", displayMode: .inline)
             .navigationBarItems(trailing: Button("Add"){
                 viewModel.showImagePicker = true
