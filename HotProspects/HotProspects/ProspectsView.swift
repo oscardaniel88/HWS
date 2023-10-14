@@ -13,9 +13,18 @@ struct ProspectsView: View {
     enum FilterType {
         case none, contacted, uncontacted
     }
+    
+    enum SortType {
+        case name, recent
+    }
+    
     let filter: FilterType
     @EnvironmentObject var prospects: Prospects
     @State private var isShowingScanner = false
+    // Challenge 3
+    @State private var isShowingSortOptions = false
+    @State var sort: SortType = .name
+    
     var title: String {
         switch filter {
         case .none:
@@ -26,6 +35,7 @@ struct ProspectsView: View {
             return "Uncontacted people"
         }
     }
+    
     var filteredProspects: [Prospect] {
         switch filter {
         case .none:
@@ -36,16 +46,40 @@ struct ProspectsView: View {
             return prospects.people.filter { !$0.isContacted }
         }
     }
+    
+    let random = ["Brittany Brown\nbrittany.brown@random.com", "Adina Woodward\nadina.woodward@random.com", "Euan Rankin\neuan.rankin@random.com", "Arman Lawrence\narman.lawrence@random.com", "Rumaysa Lang\nrumaysa.lang@random.com", "Pawel Kerr\npawel.kerr@random.com", "Ashlee Reilly\nashlee.reilly@random.com", "Tabitha Monroe\ntabitha.monroe@random.com", "Deen Key\ndeen.key@random.com", "Aasiyah Byrd\naasiyah.byrd@random.com", "Esmee Robinson\n@random.com", "Bill Archer\nbill.archer@random.com", "Umar Whitworth\numar.whitworth@random.com", "Azra Hernandez\nazra.hernandez@random.com", "Nadine Matthams\nnadine.matthams@random.com", "Mateo Pearce\nmateo.pearce@random.com", "Shelbie Santiago\nshelbie.santiago@random.com", "Md Stokes\n@md.stokesrandom.com", "Mathilde Macfarlane\nmathilde.macfarlane@random.com", "Jamila Fernandez\njamila.fernandez@random.com"]
+
+    
+    // Challenge 3
+    var filteredSortedProspects: [Prospect] {
+        switch sort {
+        case .name:
+            return filteredProspects.sorted { $0.name < $1.name }
+        case .recent:
+            return filteredProspects.sorted { $0.date > $1.date }
+        }
+    }
+    
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(filteredProspects) { prospect in
-                    VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundColor(.secondary)
+                //Challenge 3
+                ForEach(filteredSortedProspects) { prospect in
+                    HStack{
+                        // Challenge 1
+                        if self.filter == .none {
+                            Image(systemName: prospect.isContacted ? "envelope" : "envelope.badge")
+                        }
+                        VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundColor(.secondary)
+                        }
+                        
                     }
+                    
                     .swipeActions {
                         if prospect.isContacted {
                             Button {
@@ -72,17 +106,24 @@ struct ProspectsView: View {
                     }
                 }
             }
-            .navigationTitle(title)
-            .toolbar {
-                Button {
-                    isShowingScanner = true
-                } label: {
-                    Label("Scan", systemImage: "qrcode.viewfinder")
-                }
-            }
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: self.random.randomElement()! , completion: handleScan)
             }
+            .actionSheet(isPresented: $isShowingSortOptions){
+                ActionSheet(title: Text("Sort by"), buttons: [
+                    .default(Text((self.sort == .name ? "✓ " : "") + "Name"), action: { self.sort = .name }),
+                    .default(Text((self.sort == .recent ? "✓ " : "") + "Most Recent"), action: { self.sort = .recent }),
+                ])
+            }
+            .navigationTitle(title)
+            .navigationBarItems(leading: Button("Sort") {
+                self.isShowingSortOptions = true
+            }, trailing:Button(action: {
+                self.isShowingScanner = true
+            }) {
+                Image(systemName: "qrcode.viewfinder")
+                Text("Scan")
+            })
         }
     }
     
