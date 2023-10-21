@@ -12,6 +12,7 @@
 		7F56D2C62AE4701400C5B8E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F56D2C52AE4701400C5B8E5 /* Assets.xcassets */; };
 		7F56D2C92AE4701400C5B8E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F56D2C82AE4701400C5B8E5 /* Preview Assets.xcassets */; };
 		7F56D2D12AE4703E00C5B8E5 /* Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F56D2D02AE4703E00C5B8E5 /* Gestures.swift */; };
+		7F56D2D32AE4787900C5B8E5 /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F56D2D22AE4787900C5B8E5 /* Haptics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		7F56D2C52AE4701400C5B8E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F56D2C82AE4701400C5B8E5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7F56D2D02AE4703E00C5B8E5 /* Gestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gestures.swift; sourceTree = "<group>"; };
+		7F56D2D22AE4787900C5B8E5 /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				7F56D2D02AE4703E00C5B8E5 /* Gestures.swift */,
+				7F56D2D22AE4787900C5B8E5 /* Haptics.swift */,
 			);
 			path = Introduction;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F56D2D32AE4787900C5B8E5 /* Haptics.swift in Sources */,
 				7F56D2D12AE4703E00C5B8E5 /* Gestures.swift in Sources */,
 				7F56D2C42AE4701300C5B8E5 /* ContentView.swift in Sources */,
 				7F56D2C22AE4701300C5B8E5 /* FlashZillaApp.swift in Sources */,
