@@ -19,6 +19,7 @@
 		7F6AABFD2AED99BD00BB98F1 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6AABFC2AED99BD00BB98F1 /* Card.swift */; };
 		7F6AABFF2AED9A6E00BB98F1 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6AABFE2AED9A6E00BB98F1 /* CardView.swift */; };
 		7F8C7F852AE4A87800C5929C /* DisablingInteractivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8C7F842AE4A87800C5929C /* DisablingInteractivity.swift */; };
+		7FF60CE72AEEFDF300FB22D9 /* EditCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF60CE62AEEFDF300FB22D9 /* EditCardsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		7F6AABFC2AED99BD00BB98F1 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		7F6AABFE2AED9A6E00BB98F1 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		7F8C7F842AE4A87800C5929C /* DisablingInteractivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisablingInteractivity.swift; sourceTree = "<group>"; };
+		7FF60CE62AEEFDF300FB22D9 /* EditCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				7F56D2C12AE4701300C5B8E5 /* FlashZillaApp.swift */,
 				7F56D2C32AE4701300C5B8E5 /* ContentView.swift */,
 				7F6AABFE2AED9A6E00BB98F1 /* CardView.swift */,
+				7FF60CE62AEEFDF300FB22D9 /* EditCardsView.swift */,
 				7F6AABFC2AED99BD00BB98F1 /* Card.swift */,
 				7F56D2C52AE4701400C5B8E5 /* Assets.xcassets */,
 				7F56D2C72AE4701400C5B8E5 /* Preview Content */,
@@ -173,6 +176,7 @@
 				7F6AABFD2AED99BD00BB98F1 /* Card.swift in Sources */,
 				7F6AABF92AED95E700BB98F1 /* Background.swift in Sources */,
 				7F56D2D12AE4703E00C5B8E5 /* Gestures.swift in Sources */,
+				7FF60CE72AEEFDF300FB22D9 /* EditCardsView.swift in Sources */,
 				7F6AABFF2AED9A6E00BB98F1 /* CardView.swift in Sources */,
 				7F6AABF72AED938200BB98F1 /* RepeatedEvents.swift in Sources */,
 				7F56D2C42AE4701300C5B8E5 /* ContentView.swift in Sources */,
