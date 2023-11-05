@@ -37,15 +37,20 @@ struct ContentView: View {
                     .background(.black.opacity(0.75))
                     .clipShape(Capsule())
                 ZStack {
-                    ForEach(0..<cards.count, id:\.self) { index in
-                        CardView(card: cards[index]) {
-                            withAnimation {
-                                removeCard(at: index)
+                    ForEach(cards) { card in
+                        CardView(card: card) { restack in
+                            if (restack){
+                                restackCard(at: getIndexForCard(card: card))
+                                return
+                            }else {
+                                withAnimation {
+                                 removeCard(at: getIndexForCard(card: card))
+                                }
                             }
                         }
-                        .stacked(at: index, in: cards.count)
-                        .allowsHitTesting(index == cards.count - 1)
-                        .accessibilityHidden(index < cards.count - 1)
+                        .stacked(at: getIndexForCard(card: card), in: cards.count)
+                        .allowsHitTesting(getIndexForCard(card: card) == cards.count - 1)
+                        .accessibilityHidden(getIndexForCard(card: card) < cards.count - 1)
                     }
                 }
                 .allowsHitTesting(timeRemaining > 0)
@@ -140,12 +145,23 @@ struct ContentView: View {
         .onAppear(perform: resetCards)
     }
     
-    func removeCard(at index: Int){
+    func getIndexForCard(card: Card) -> Int {
+        return cards.firstIndex(where: {$0.id == card.id})!
+    }
+    
+    func removeCard(at index: Int) {
         guard index >= 0 else { return }
         cards.remove(at: index)
         if cards.isEmpty {
             isActive = false
         }
+    }
+    
+    func restackCard(at index: Int) {
+        guard index >= 0 else { return }
+        let card = cards[index]
+        cards.remove(at: index)
+        cards.insert(card, at: 0)
     }
     
     func resetCards () {

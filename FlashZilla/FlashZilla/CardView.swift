@@ -9,9 +9,10 @@ import SwiftUI
 
 struct CardView: View {
     let card: Card
-    var removal: (() -> Void)? = nil
+    var removal: ((Bool) -> Void)? = nil
     @State private var isShowingAnswer = false
     @State private var offset = CGSize.zero
+    @State private var isCorrect = false
     @State private var feedback =  UINotificationFeedbackGenerator()
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
@@ -26,7 +27,7 @@ struct CardView: View {
                     differentiateWithoutColor
                     ? nil
                     : RoundedRectangle(cornerRadius: 25, style: .continuous)
-                        .fill(offset.width > 0 ? .green : .red)
+                        .fill(getBackgroundColor())
                 )
                 .shadow(radius: 10)
             
@@ -59,12 +60,21 @@ struct CardView: View {
             DragGesture()
                 .onChanged { gesture in
                     offset = gesture.translation
+                    if offset.width > 0{
+                        isCorrect = true
+                    }else if offset.width < 0 {
+                        isCorrect = false
+                    }
                     feedback.prepare()
                 }
                 .onEnded { _ in
                     if abs(offset.width) > 100 {
                         feedback.notificationOccurred(offset.width > 0 ? .success : .error)
-                        removal?()
+                        removal?(!isCorrect)
+                        if(!isCorrect){
+                            isShowingAnswer = false
+                            offset = .zero
+                        }
                     } else {
                         offset = .zero
                     }
@@ -74,6 +84,18 @@ struct CardView: View {
             isShowingAnswer.toggle()
         }
         .animation(.spring(), value: offset)
+    }
+    
+    func getBackgroundColor() -> Color {
+        if offset.width > 0 {
+            return .green
+        }
+        
+        if offset.width < 0 {
+            return .red
+        }
+        
+        return .white
     }
 }
 
