@@ -16,7 +16,7 @@ public enum MapRouter: NavigationRouter {
         case .map:
             return .push
         case .city:
-            return .presentFullscreen
+            return .push
         }
     }
     
