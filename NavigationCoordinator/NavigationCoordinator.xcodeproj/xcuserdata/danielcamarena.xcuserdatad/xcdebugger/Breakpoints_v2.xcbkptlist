@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "5B5E53A3-F111-45DC-9B36-6A70C698BD70"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E00CD365-1AB8-4A73-8F75-E22464EE4766"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavigationCoordinator/Coordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "smartDisiss(animated:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E00CD365-1AB8-4A73-8F75-E22464EE4766 - 5ac3252efe470eea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NavigationCoordinator.Coordinator.smartDisiss(animated: Swift.Bool, type: &#x3c4;_0_0) -&gt; ()"
+                  moduleName = "NavigationCoordinator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielcamarena/Github/HWS/NavigationCoordinator/NavigationCoordinator/Coordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  uuid = "E00CD365-1AB8-4A73-8F75-E22464EE4766 - 96bf96f1168e3431"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "NavigationCoordinator.Coordinator.smartDisiss(animated: Swift.Bool) -&gt; ()"
+                  moduleName = "NavigationCoordinator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/danielcamarena/Github/HWS/NavigationCoordinator/NavigationCoordinator/Coordinator.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "312">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "355E8520-CACD-427D-A52A-8C1E5B402309"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NavigationCoordinator/Coordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "smartDisiss(animated:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -30,7 +30,7 @@ struct CityView: View {
         VStack {
             Text(name)
             Button("Back") {
-                coordinator.pop()
+                coordinator.smartDisiss()
             }
         }.navigationBarHidden(true)
     }

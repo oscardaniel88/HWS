@@ -11,10 +11,12 @@ open class Coordinator<Router: NavigationRouter>: ObservableObject {
     
     public let navigationController: UINavigationController
     public let startingRoute: Router?
+    public var currentRoute: Router?
     
     public init(navigationController: UINavigationController = .init(), startingRoute: Router? = nil) {
         self.navigationController = navigationController
         self.startingRoute = startingRoute
+        self.currentRoute = startingRoute
     }
     
     public func start() {
@@ -23,6 +25,7 @@ open class Coordinator<Router: NavigationRouter>: ObservableObject {
     }
     
     public func show(_ route: Router, animated: Bool = true) {
+        currentRoute = route
         let view = route.view()
         let viewWithCoordinator = view.environmentObject(self)
         let viewController = UIHostingController(rootView: viewWithCoordinator)
@@ -38,17 +41,30 @@ open class Coordinator<Router: NavigationRouter>: ObservableObject {
         }
     }
     
-    public func pop(animated: Bool = true) {
+    private func pop(animated: Bool = true) {
         navigationController.popViewController(animated: animated)
     }
     
-    public func popToRoot(animated: Bool = true) {
+    private func popToRoot(animated: Bool = true) {
         navigationController.popToRootViewController(animated: animated)
     }
     
-    open func dismiss(animated: Bool = true) {
-        navigationController.dismiss(animated: animated) { [weak self] in
-            //self?.navigationController.viewControllers = []
+    private func dismiss(animated: Bool = true) {
+        navigationController.dismiss(animated: animated)
+    }
+    
+    public func smartDisiss(animated: Bool = true) {
+        guard let route = currentRoute else { return }
+        switch route.transition {
+        case .push :
+            self.pop()
+            return
+        case .presentFullscreen :
+            self.dismiss()
+            return
+        case .presentModally :
+            self.dismiss()
+            return
         }
     }
 }
