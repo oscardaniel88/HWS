@@ -26,6 +26,9 @@ open class Coordinator<Router: NavigationRouter>: ObservableObject {
     
     public func show(_ route: Router, animated: Bool = true) {
         currentRoute = route
+        if(currentRoute?.transition != .push){
+                self.dismiss()
+        }
         let view = route.view()
         let viewWithCoordinator = view.environmentObject(self)
         let viewController = UIHostingController(rootView: viewWithCoordinator)

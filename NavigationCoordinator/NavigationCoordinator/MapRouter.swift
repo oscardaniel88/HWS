@@ -10,12 +10,15 @@ import SwiftUI
 public enum MapRouter: NavigationRouter {
     case map
     case city(named: String)
+    case state(named: String)
     
     public var transition: NavigationTranisitionStyle {
         switch self {
         case .map:
             return .push
         case .city:
+            return .presentModally
+        case .state:
             return .presentModally
         }
     }
@@ -27,6 +30,8 @@ public enum MapRouter: NavigationRouter {
             MapView()
         case .city(named: let name):
             CityView(name: name)
+        case .state(named: let name):
+            StateView(name: name)
         }
     }
 }

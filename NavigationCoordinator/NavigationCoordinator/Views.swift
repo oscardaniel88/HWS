@@ -32,7 +32,26 @@ struct CityView: View {
             Button("Back") {
                 coordinator.smartDisiss()
             }
+            Button("Go to state") {
+                coordinator.show(.state(named: "Texas"))
+            }
         }.navigationBarHidden(true)
     }
 }
+
+struct StateView: View {
+    @EnvironmentObject var coordinator: Coordinator<MapRouter>
+    
+    let name: String
+    
+    var body: some View {
+        VStack {
+            Text(name)
+            Button("Back") {
+                coordinator.smartDisiss()
+            }
+        }.navigationBarHidden(true)
+    }
+}
+
 
