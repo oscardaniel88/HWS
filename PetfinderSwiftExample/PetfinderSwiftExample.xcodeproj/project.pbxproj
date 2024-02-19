@@ -14,6 +14,7 @@
 		7F756E272B8302EF002B1904 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F756E262B8302EF002B1904 /* NetworkError.swift */; };
 		7F756E292B830398002B1904 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F756E282B830398002B1904 /* APIConstants.swift */; };
 		7F756E2B2B830614002B1904 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F756E2A2B830614002B1904 /* APIService.swift */; };
+		7FD1034D2B8407B1006FF424 /* AnimalListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1034C2B8407B1006FF424 /* AnimalListCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		7F756E262B8302EF002B1904 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		7F756E282B830398002B1904 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		7F756E2A2B830614002B1904 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		7FD1034C2B8407B1006FF424 /* AnimalListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalListCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			children = (
 				7F756E182B8301C7002B1904 /* PetfinderSwiftExampleApp.swift */,
 				7F756E1A2B8301C7002B1904 /* ContentView.swift */,
+				7FD1034C2B8407B1006FF424 /* AnimalListCellView.swift */,
 				7F756E262B8302EF002B1904 /* NetworkError.swift */,
 				7F756E282B830398002B1904 /* APIConstants.swift */,
 				7F756E2A2B830614002B1904 /* APIService.swift */,
@@ -148,6 +151,7 @@
 			files = (
 				7F756E292B830398002B1904 /* APIConstants.swift in Sources */,
 				7F756E2B2B830614002B1904 /* APIService.swift in Sources */,
+				7FD1034D2B8407B1006FF424 /* AnimalListCellView.swift in Sources */,
 				7F756E272B8302EF002B1904 /* NetworkError.swift in Sources */,
 				7F756E1B2B8301C7002B1904 /* ContentView.swift in Sources */,
 				7F756E192B8301C7002B1904 /* PetfinderSwiftExampleApp.swift in Sources */,

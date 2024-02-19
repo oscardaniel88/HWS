@@ -46,14 +46,15 @@ class APIService {
         return results
     }
     
-    func search(token: String, pageNumber page: Int) async throws -> [Animal] {
-        guard let url = URL(string: "https://api.petfinder.com/v2/animals?type=dog&page=\(page)") else {
+    func search(tokenType: String, token: String, type: petType, pageNumber page: Int) async throws -> [Animal] {
+        let components = type._links.breeds.href.split(separator:"/")
+        guard let url = URL(string: "https://api.petfinder.com/v2/animals?type=\(components[2])&page=\(page)") else {
             throw NetworkError.invalidUrl
         }
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
-        urlRequest.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        urlRequest.addValue(tokenType + " " + token, forHTTPHeaderField: "Authorization")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let (data, httpResponse) = try await URLSession.shared.data(for: urlRequest)
@@ -67,6 +68,28 @@ class APIService {
         
         return results.animals
     }
+    
+    func getTypes(tokenType: String, token: String) async throws -> [petType] {
+        guard let url = URL(string: "https://api.petfinder.com/v2/types") else {
+            throw NetworkError.invalidUrl
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.addValue(tokenType + " " + token, forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data, httpResponse) = try await URLSession.shared.data(for: urlRequest)
+        
+        guard let httpResponse = httpResponse as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw NetworkError.invalidResponse
+        }
+        
+        let decoder = JSONDecoder()
+        let results = try decoder.decode(petTypeResponse.self, from: data)
+        
+        return results.types
+    }
 }
 
 struct Token: Codable {
@@ -77,6 +100,10 @@ struct Token: Codable {
 
 struct Response: Codable {
     let animals: [Animal]
+}
+
+struct petTypeResponse: Codable {
+    let types: [petType]
 }
 
 struct Animal: Codable, Identifiable, Hashable {
@@ -99,4 +126,17 @@ struct Photo: Codable{
     let medium: String
     let large: String
     let full: String
+}
+
+struct petType: Codable, Hashable{
+    let name: String
+    let _links: Links
+}
+
+struct Links: Codable, Hashable {
+    let breeds: Href
+}
+
+struct Href: Codable, Hashable {
+    let href: String
 }
