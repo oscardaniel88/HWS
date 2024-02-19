@@ -71,7 +71,6 @@ struct ContentView: View {
             loading = false
             print("Exception \(error.localizedDescription)")
         }
-        
     }
 }
 
