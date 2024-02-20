@@ -46,8 +46,8 @@ class APIService {
         return results
     }
     
-    func search(tokenType: String, token: String, type: petType, pageNumber page: Int) async throws -> [Animal] {
-        let components = type._links.breeds.href.split(separator:"/")
+    func search(tokenType: String, token: String, petType: petType, pageNumber page: Int) async throws -> [Animal] {
+        let components = petType._links.breeds.href.split(separator:"/")
         guard let url = URL(string: "https://api.petfinder.com/v2/animals?type=\(components[2])&page=\(page)") else {
             throw NetworkError.invalidUrl
         }
@@ -90,6 +90,29 @@ class APIService {
         
         return results.types
     }
+    
+    
+    func getAnimal(tokenType: String, token: String, animalId: Int) async throws -> Animal {
+        guard let url = URL(string: "https://api.petfinder.com/v2/animals/\(animalId)") else {
+            throw NetworkError.invalidUrl
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        urlRequest.addValue(tokenType + " " + token, forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data, httpResponse) = try await URLSession.shared.data(for: urlRequest)
+        
+        guard let httpResponse = httpResponse as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw NetworkError.invalidResponse
+        }
+        
+        let decoder = JSONDecoder()
+        let results = try decoder.decode(Animal.self, from: data)
+        
+        return results
+    }
 }
 
 struct Token: Codable {
@@ -115,6 +138,11 @@ struct Animal: Codable, Identifiable, Hashable {
     let name: String
     let url: String
     let photos: [Photo]?
+    let type: String
+    let age: String
+    let gender: String
+    let size: String
+    let status: String
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -129,14 +157,20 @@ struct Photo: Codable{
 }
 
 struct petType: Codable, Hashable{
+    struct Links: Codable, Hashable {
+        let breeds: Href
+        let `self`: Href
+    }
+    
+    struct Href: Codable, Hashable {
+        let href: String
+    }
+
     let name: String
     let _links: Links
-}
-
-struct Links: Codable, Hashable {
-    let breeds: Href
-}
-
-struct Href: Codable, Hashable {
-    let href: String
+    
+    public init(name: String, link: String){
+        self.name = name
+        self._links = Links(breeds: Href(href: link+"/breeds"), self: Href(href: link))
+    }
 }

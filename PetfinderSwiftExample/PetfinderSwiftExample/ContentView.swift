@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var response = [Animal]()
     @State var petTypes = [petType]()
-    @State private var selectedType = petType(name: "Dog", _links: Links(breeds: Href(href: "/v2/types/dog/breeds")) )
+    @State private var selectedType = petType(name: "Dog", link:"/v2/types/dog")
     @State var loading = true
     @State var endOfPageIdx = 0
     @State var currentPage = 1
@@ -42,14 +42,18 @@ struct ContentView: View {
                     ScrollView {
                         LazyVStack {
                             ForEach(Array(response.enumerated()), id: \.element) {index, response in
-                                VStack{
-                                    AnimalListCellView(photos: response.photos, name: response.name)
-                                    Divider()
-                                        .padding(.horizontal, 16)
-                                    if(index == endOfPageIdx - 1 && loading){
-                                        ProgressView()
+                                NavigationLink {
+                                    AnimalDetailView(animal: response)
+                                } label: {
+                                    VStack{
+                                        AnimalListCellView(photos: response.photos, name: response.name)
+                                        Divider()
+                                            .padding(.horizontal, 16)
+                                        if(index == endOfPageIdx - 1 && loading){
+                                            ProgressView()
+                                        }
+                                        
                                     }
-                                    
                                 }
                                 .task {
                                     if(index == endOfPageIdx - 1){
@@ -64,8 +68,10 @@ struct ContentView: View {
                 }
             }
             .task {
-                await loadData()
-                await loadPetTypes()
+                if(response.count == 0 ){
+                    await loadData()
+                    await loadPetTypes()
+                }
             }.navigationTitle("Pet finder 🐶")
                 .font(.headline)
         }
@@ -81,7 +87,7 @@ struct ContentView: View {
     func loadData() async  -> () {
         do{
             let token =  try await APIService.shared.getAccessToken()
-            let response = try await APIService.shared.search(tokenType: token.tokenType, token: token.accessToken, type: self.selectedType, pageNumber: currentPage)
+            let response = try await APIService.shared.search(tokenType: token.tokenType, token: token.accessToken, petType: self.selectedType, pageNumber: currentPage)
             self.endOfPageIdx = self.endOfPageIdx +  response.count
             self.response.append(contentsOf: response)
             loading = false
