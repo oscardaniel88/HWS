@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+extension Array where Element: Hashable {
+    func removingDuplicates() -> [Element] {
+        var addedDict = [Element: Bool]()
+
+        return filter {
+            addedDict.updateValue(true, forKey: $0) == nil
+        }
+    }
+
+    mutating func removeDuplicates() {
+        self = self.removingDuplicates()
+    }
+}
+
 struct ContentView: View {
     @State var response = [Animal]()
     @State var petTypes = [petType]()
@@ -87,7 +101,8 @@ struct ContentView: View {
     func loadData() async  -> () {
         do{
             let token =  try await APIService.shared.getAccessToken()
-            let response = try await APIService.shared.search(tokenType: token.tokenType, token: token.accessToken, petType: self.selectedType, pageNumber: currentPage)
+            var response = try await APIService.shared.search(tokenType: token.tokenType, token: token.accessToken, petType: self.selectedType, pageNumber: currentPage)
+            response = response.removingDuplicates()
             self.endOfPageIdx = self.endOfPageIdx +  response.count
             self.response.append(contentsOf: response)
             loading = false
