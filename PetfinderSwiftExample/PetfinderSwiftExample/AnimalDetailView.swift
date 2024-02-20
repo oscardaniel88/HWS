@@ -40,7 +40,18 @@ struct AnimalDetailView: View {
 }
 
 #Preview {
-    let photo = Photo(small:  "https://photos.petfinder.com/photos/pets/124/1/?bust=1546042081&width=300", medium:  "https://photos.petfinder.com/photos/pets/124/1/?bust=1546042081&width=300", large: "https://photos.petfinder.com/photos/pets/124/1/?bust=1546042081&width=300", full: "https://photos.petfinder.com/photos/pets/124/1/?bust=1546042081&width=300")
-    let animal = Animal(id: 0, name: "test", url: "test", photos: [photo], type: "Cat", age: "Young", gender: "Male", size: "Big", status: "Adoptable")
+    let photo = Photo(small:  "https://photos.petfinder.com/photos/pets/124/1/?bust=1546042081&width=300", 
+                      medium:  "https://photos.petfinder.com/photos/pets/124/1/?bust=1546042081&width=300",
+                      large: "https://photos.petfinder.com/photos/pets/124/1/?bust=1546042081&width=300",
+                      full: "https://photos.petfinder.com/photos/pets/124/1/?bust=1546042081&width=300")
+    let animal = Animal(id: 0,
+                        name: "test",
+                        url: "test",
+                        photos: [photo],
+                        type: "Cat", 
+                        age: "Young",
+                        gender: "Male",
+                        size: "Big",
+                        status: "Adoptable")
     return AnimalDetailView(animal: animal)
 }
