@@ -55,7 +55,7 @@ struct ContentView: View {
                 } else {
                     ScrollView {
                         LazyVStack {
-                            ForEach(Array(response.enumerated()), id: \.element) {index, response in
+                            ForEach(Array(response.removingDuplicates().enumerated()), id: \.element.id) {index, response in
                                 NavigationLink {
                                     AnimalDetailView(animal: response)
                                 } label: {
