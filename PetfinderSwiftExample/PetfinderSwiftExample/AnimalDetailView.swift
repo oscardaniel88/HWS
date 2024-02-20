@@ -14,7 +14,7 @@ struct AnimalDetailView: View {
     }
     var body: some View {
         Form {
-            Section (header: Text("\(animal.id)")){
+            Section {
                 HStack{
                     Spacer()
                     AsyncImage(url: URL(string: animal.photos?.first?.full ?? "")){ image in
